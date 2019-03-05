@@ -1,0 +1,6 @@
+---
+- name: install centos-release-opstools
+  package:
+    name: centos-release-opstools
+    state: installed
+  when: ansible_distribution == 'CentOS'

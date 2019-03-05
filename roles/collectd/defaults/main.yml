@@ -1,0 +1,7 @@
+---
+
+collectd_conf_dir: '/etc/collectd.d'
+
+collectd_plugin_packages:
+  - collectd-disk
+  - collectd-amqp1

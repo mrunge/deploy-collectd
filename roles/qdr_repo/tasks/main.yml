@@ -1,0 +1,7 @@
+---
+
+- name: install centos-release-openstack-rocky
+  package:
+    name: centos-release-openstack-rocky
+    state: installed
+  when: ansible_distribution == 'CentOS'

@@ -1,0 +1,24 @@
+---
+
+- name: install qdrouter
+  package:
+    name: qpid-dispatch-router
+    state: installed
+  notify: restart qdrouter
+
+- name: place config
+  template:
+    src: qdrouterd.conf.j2
+    dest: '/etc/qpid-dispatch/qdrouterd.conf'
+  notify: restart qdrouter
+
+- name: install debugging utils
+  package:
+    name: qpid-dispatch-tools
+    state: installed
+
+- name: enable qdrouterd service
+  service:
+    name: qdrouterd
+    state: started
+    enabled: true

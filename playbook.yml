@@ -1,0 +1,10 @@
+---
+- name: install collectd
+  hosts: all
+  roles:
+    - collectd
+
+- name: install qdrouterd
+  hosts: all
+  roles:
+    - qdr

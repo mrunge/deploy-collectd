@@ -1,0 +1,33 @@
+---
+- name: install collectd-packages
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items: '{{ collectd_plugin_packages }}'
+  notify: restart collectd
+
+- name: make sure, amqp1 is installed
+  package:
+    name: 'collectd-amqp1'
+    state: present
+  notify: restart collectd
+
+- name: place amqp1 config
+  template:
+    src: amqp1.conf.j2
+    dest: "{{collectd_conf_dir}}/amqp1.conf"
+
+- name: set collectd_tcp_network_connect
+  seboolean:
+    name: collectd_tcp_network_connect
+    state: true
+    persistent: true
+  when: >
+    ansible_selinux.status == "enabled" and
+    ansible_selinux.mode in ["enforcing", "permissive"]
+
+- name: enable collectd service
+  service:
+    name: 'collectd'
+    state: started
+    enabled: true

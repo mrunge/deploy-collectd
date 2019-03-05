@@ -1,0 +1,5 @@
+---
+- name: restart qdrouter
+  service:
+    name: qdrouterd
+    state: restarted
