@@ -22,7 +22,7 @@
 
 router {
     mode: interior
-    id: router-ansible
+    id: router-{{ansible_hostname}}
 }
 
 listener {
@@ -38,7 +38,6 @@ listener {
     role: inter-router
     authenticatePeer: no
     saslMechanisms: ANONYMOUS
-    failoverList: green-qdr-sa-telemetry.apps.openshift.berg.ol
 }
 
 connector {

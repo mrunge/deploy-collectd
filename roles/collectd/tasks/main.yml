@@ -17,6 +17,11 @@
     src: amqp1.conf.j2
     dest: "{{collectd_conf_dir}}/amqp1.conf"
 
+- name: place unixsock config
+  template:
+    src: unixsock.conf.j2
+    dest: "{{collectd_conf_dir}}/unixsock.conf"
+
 - name: set collectd_tcp_network_connect
   seboolean:
     name: collectd_tcp_network_connect
